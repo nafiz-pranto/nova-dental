@@ -1,60 +1,76 @@
 @import "tailwindcss";
 
 @theme {
-  --color-muted-forest: #29483F;
-  --color-dusty-sage: #A5B5A5;
-  --color-warm-ivory: #F6F3EC;
-  --color-soft-stone: #E7E2D8;
-  --color-muted-gold: #B49A6A;
-  --color-warm-charcoal: #343A36;
-  --color-soft-gray: #777D77;
-  --color-off-white: #FCFBF8;
+  --color-primary-bg: #F7FAFC;
+  --color-secondary-bg: #E4EEF5;
+  --color-muted-blue: #A9C0D0;
+  --color-secondary-blue: #65869C;
+  --color-deep-blue: #365469;
+  --color-primary-text: #263746;
+  --color-secondary-text: #627482;
+  --color-border-divider: #D7E3EB;
+  --color-surface-white: #FFFFFF;
 }
 
 @layer utilities {
   .font-serif-atelier {
-    font-family: 'Playfair Display', 'Noto Serif Bengali', serif;
+    font-family: 'Playfair Display', 'Noto Serif Bengali', Georgia, serif;
   }
   .font-sans-modern {
-    font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Hind Siliguri', system-ui, sans-serif;
   }
   .font-serif-human {
     font-family: 'Fraunces', 'Noto Serif Bengali', Georgia, serif;
   }
   .font-bengali-heading {
-    font-family: 'Noto Serif Bengali', 'Playfair Display', serif;
+    font-family: 'Noto Serif Bengali', 'Playfair Display', Georgia, serif;
   }
   .font-bengali-ui {
-    font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Hind Siliguri', 'Plus Jakarta Sans', system-ui, sans-serif;
   }
-  .bg-atelier-ivory {
-    background-color: #F6F3EC;
+  
+  /* Semantic background utilities */
+  .bg-primary-surface {
+    background-color: #F7FAFC;
   }
-  .bg-atelier-sand {
-    background-color: #E7E2D8;
+  .bg-secondary-surface {
+    background-color: #E4EEF5;
   }
-  .bg-atelier-forest {
-    background-color: #29483F;
+  .bg-deep-surface {
+    background-color: #365469;
   }
-  .text-atelier-gold {
-    color: #B49A6A;
+  
+  /* Semantic text utilities */
+  .text-primary-ink {
+    color: #263746;
   }
-  .border-atelier-gold {
-    border-color: #B49A6A;
+  .text-secondary-ink {
+    color: #627482;
+  }
+  .text-deep-brand {
+    color: #365469;
+  }
+  .text-muted-brand {
+    color: #65869C;
+  }
+  
+  /* Semantic border utilities */
+  .border-subtle {
+    border-color: #D7E3EB;
   }
 }
 
-/* Muted refined gold accent */
-.luxury-gold-shimmer {
-  background: linear-gradient(135deg, #CBB68B 0%, #B49A6A 50%, #9B8154 100%);
+/* Subtle soft blue gradient glow for headers & heroes */
+.hero-soft-radial {
+  background: radial-gradient(circle at 75% 30%, rgba(169, 192, 208, 0.22) 0%, rgba(228, 238, 245, 0.45) 50%, rgba(247, 250, 252, 1) 100%);
 }
 
-.luxury-card-border {
-  border: 1px solid rgba(180, 154, 106, 0.28);
+.card-soft-shadow {
+  box-shadow: 0 4px 20px -2px rgba(38, 55, 70, 0.05), 0 2px 6px -1px rgba(38, 55, 70, 0.03);
 }
 
-.luxury-hairline {
-  border-color: #E7E2D8;
+.card-hover-shadow:hover {
+  box-shadow: 0 10px 30px -4px rgba(38, 55, 70, 0.08), 0 4px 10px -2px rgba(38, 55, 70, 0.04);
 }
 
 /* Enhanced Bengali typography and glyph rendering */
@@ -65,7 +81,7 @@ html[lang="bn"] {
 
 html[lang="bn"] .font-serif-atelier {
   font-family: 'Noto Serif Bengali', 'Playfair Display', serif;
-  line-height: 1.32;
+  line-height: 1.35;
 }
 
 /* Balanced text wrap without breaking Bengali conjunct glyphs awkwardly */
@@ -77,20 +93,20 @@ p, span, label, a {
   overflow-wrap: break-word;
 }
 
-/* Custom scrollbar in muted tones */
+/* Custom scrollbar in muted blue tones */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #F7FAFC;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(119, 125, 119, 0.3);
+  background: #A9C0D0;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(119, 125, 119, 0.55);
+  background: #65869C;
 }
 
 /* Reduced Motion Compliance (WCAG 2.2 AA) */
@@ -103,10 +119,4 @@ p, span, label, a {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-/* Accessible focus outline for keyboard navigation */
-:focus-visible {
-  outline: 2px solid #B49A6A;
-  outline-offset: 2px;
 }

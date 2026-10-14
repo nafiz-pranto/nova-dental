@@ -2,19 +2,21 @@ import React from 'react';
 
 export const Badge: React.FC<{
   children: React.ReactNode;
-  variant?: 'gold' | 'neutral' | 'sage' | 'dark';
+  variant?: 'blue' | 'neutral' | 'subtle' | 'dark' | 'gold' | 'sage';
   className?: string;
 }> = ({ children, variant = 'neutral', className = '' }) => {
   const styles = {
-    gold: 'bg-[#F6F3EC] text-[#B49A6A] border-[#E7E2D8]',
-    neutral: 'bg-[#E7E2D8] text-[#343A36] border-[#D5CEC2]',
-    sage: 'bg-[#A5B5A5]/25 text-[#29483F] border-[#A5B5A5]/50',
-    dark: 'bg-[#29483F] text-[#FCFBF8] border-[#34584E]',
+    blue: 'bg-[#E4EEF5] text-[#365469] border-[#D7E3EB]',
+    neutral: 'bg-[#F7FAFC] text-[#627482] border-[#D7E3EB]',
+    subtle: 'bg-[#FFFFFF] text-[#65869C] border-[#D7E3EB]',
+    dark: 'bg-[#365469] text-[#FFFFFF] border-[#65869C]',
+    gold: 'bg-[#E4EEF5] text-[#365469] border-[#D7E3EB]',
+    sage: 'bg-[#E4EEF5] text-[#65869C] border-[#D7E3EB]',
   };
 
   return (
     <span
-      className={`inline-flex items-center px-2 py-0.5 text-[10px] uppercase font-medium tracking-wider rounded-sm border ${styles[variant]} ${className}`}
+      className={`inline-flex items-center px-2.5 py-0.5 text-[11px] font-medium tracking-wide rounded border ${styles[variant]} ${className}`}
     >
       {children}
     </span>

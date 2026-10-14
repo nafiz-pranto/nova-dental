@@ -1,12 +1,11 @@
 import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'gold' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'outline' | 'accent' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   children: React.ReactNode;
   icon?: React.ReactNode;
-  iconPosition?: 'left' | 'right';
-  className?: string;
+  fullWidth?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -14,41 +13,38 @@ export const Button: React.FC<ButtonProps> = ({
   size = 'md',
   children,
   icon,
-  iconPosition = 'right',
+  fullWidth = false,
   className = '',
   disabled,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium tracking-wide transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed select-none';
+  // Architectural design: Deep blue (#365469), Muted blue (#A9C0D0), Soft white (#FFFFFF)
+  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#65869C] focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.99] rounded-md';
 
   const sizeStyles = {
-    sm: 'text-xs px-3.5 py-1.5 rounded-sm gap-1.5',
-    md: 'text-xs sm:text-sm px-5 py-2.5 rounded-sm gap-2',
-    lg: 'text-sm sm:text-base px-7 py-3.5 rounded-sm gap-2.5',
+    sm: 'text-xs px-3.5 py-1.5 gap-1.5 min-h-[36px]',
+    md: 'text-sm px-5 py-2.5 gap-2 min-h-[44px]',
+    lg: 'text-base px-6 py-3.5 gap-2.5 min-h-[50px]',
   };
 
   const variantStyles = {
-    primary:
-      'bg-[#29483F] text-[#FCFBF8] hover:bg-[#1E3730] active:bg-[#182C26] border border-[#29483F] shadow-xs',
-    secondary:
-      'bg-[#FCFBF8] text-[#29483F] hover:bg-[#F6F3EC] active:bg-[#E7E2D8] border border-[#E7E2D8] shadow-xs',
-    outline:
-      'bg-transparent text-[#29483F] hover:bg-[#F6F3EC] active:bg-[#E7E2D8] border border-[#E7E2D8]',
-    gold:
-      'bg-[#B49A6A] text-[#FCFBF8] hover:bg-[#A38959] active:bg-[#91794A] border border-[#B49A6A] font-semibold shadow-xs',
-    ghost:
-      'bg-transparent text-[#777D77] hover:text-[#29483F] hover:bg-[#E7E2D8]/50 active:bg-[#E7E2D8]',
+    primary: 'bg-[#365469] text-[#FFFFFF] hover:bg-[#284051] shadow-sm hover:shadow active:bg-[#1E313E] border border-transparent',
+    secondary: 'bg-[#FFFFFF] text-[#365469] border border-[#D7E3EB] hover:bg-[#E4EEF5] hover:border-[#A9C0D0] hover:text-[#263746] shadow-2xs',
+    outline: 'bg-transparent border border-[#65869C] text-[#365469] hover:bg-[#E4EEF5] hover:border-[#365469] active:bg-[#D7E3EB]',
+    accent: 'bg-[#E4EEF5] text-[#365469] border border-[#D7E3EB] hover:bg-[#D7E3EB] hover:text-[#263746] font-semibold',
+    ghost: 'bg-transparent text-[#365469] hover:bg-[#E4EEF5] hover:text-[#263746]',
   };
+
+  const widthStyle = fullWidth ? 'w-full' : '';
 
   return (
     <button
-      className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
+      className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${widthStyle} ${className}`}
       disabled={disabled}
       {...props}
     >
-      {icon && iconPosition === 'left' && <span className="shrink-0">{icon}</span>}
+      {icon && <span className="shrink-0">{icon}</span>}
       <span>{children}</span>
-      {icon && iconPosition === 'right' && <span className="shrink-0">{icon}</span>}
     </button>
   );
 };

@@ -3,7 +3,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { CLINIC_CONFIG } from '../../config/clinicData';
 import { SectionHeading } from '../ui/SectionHeading';
 import { StudioImage } from '../ui/StudioImage';
-import { Volume2, Scan, ShieldCheck, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
+import { ShieldCheck, CheckCircle2, Sparkles, Volume2, Scan } from 'lucide-react';
 
 export const ClinicExperienceSection: React.FC = () => {
   const { isBn } = useLanguage();
@@ -13,10 +13,10 @@ export const ClinicExperienceSection: React.FC = () => {
     acoustic: {
       id: 'acoustic',
       tabTitleEn: 'Acoustic Calm Suite',
-      tabTitleBn: 'অ্যাকোস্টিক প্রাইভেট স্যুট',
+      tabTitleBn: 'অ্যাকোস্টিক প্রাইভেট কেবিন',
       image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=80',
       artworkType: 'acoustic' as const,
-      eyebrowEn: 'Private Ergonomic Architecture',
+      eyebrowEn: 'Private Ergonomic Care',
       eyebrowBn: 'শব্দহীন ও আরামদায়ক কেবিন',
       headlineEn: 'Designed to Dissolve Dental Anxiety Before Care Begins',
       headlineBn: 'চিকিৎসা শুরুর পূর্বেই ভয় ও মানসিক চাপ দূর করার পরিবেশ',
@@ -50,20 +50,20 @@ export const ClinicExperienceSection: React.FC = () => {
       featuresEn: [
         'No unpleasant gag-inducing physical impression trays',
         '85% lower radiation exposure than standard dental radiographs',
-        'Immediate chairside 3D model visualization on 4K display',
+        'Immediate chairside 3D model visualization on high-definition display',
         'Sub-millimeter planning for dental implants and ceramic veneers'
       ],
       featuresBn: [
         'বমিভাব সৃষ্টিকারী কোনো পেস্ট বা ট্রের প্রয়োজন নেই',
         'প্রচলিত এক্স-রে এর তুলনায় ৮৫% কম রেডিয়েশন',
-        'চেয়ারের পাশেই ৪কে মনিটরে ত্রিমাত্রিক দাঁতের মডেল দেখার সুযোগ',
+        'চেয়ারের পাশেই মনিটরে ত্রিমাত্রিক দাঁতের মডেল দেখার সুযোগ',
         'ইমপ্লান্ট ও ভিনিয়ার্সের জন্য নিখুঁত ডিজিটাল পরিকল্পনা'
       ]
     },
     sterilization: {
       id: 'sterilization',
       tabTitleEn: 'Class-B Sterilization Theater',
-      tabTitleBn: 'সেন্ট্রাল স্টেরিলাইজেশন থিয়েটার',
+      tabTitleBn: 'সেন্ট্রাল স্টেরিলাইজেশন রুম',
       image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80',
       artworkType: 'operatory' as const,
       eyebrowEn: 'Hospital-Grade EN 13060 Protocol',
@@ -90,16 +90,13 @@ export const ClinicExperienceSection: React.FC = () => {
   const currentZone = zones[activeZone];
 
   return (
-    <section id="experience" className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-[#29483F] text-[#FCFBF8] relative overflow-hidden border-b border-[#34584E]">
-      {/* Decorative architectural ambient glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#B49A6A]/10 rounded-full blur-3xl pointer-events-none"></div>
-
+    <section id="experience" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F7FAFC] text-[#263746] relative overflow-hidden border-b border-[#D7E3EB]">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mb-10">
           <SectionHeading
-            isDark
-            eyebrow={isBn ? 'ক্লিনিক পরিবেশ ও নকশা' : 'Sensory & Clinical Engineering'}
+            isDark={false}
+            eyebrow={isBn ? 'ক্লিনিক পরিবেশ ও নকশা' : 'Clinic Engineering & Atmosphere'}
             title={isBn ? 'চিকিৎসার ভীতিহীন পরিবেশ: শান্ত ও আধুনিক স্টুডিও' : 'Architectural Calm Meets Advanced Diagnostics'}
             subtitle={
               isBn
@@ -110,7 +107,7 @@ export const ClinicExperienceSection: React.FC = () => {
         </div>
 
         {/* Tab Controls */}
-        <div className="flex flex-wrap gap-2 mb-8 border-b border-[#34584E] pb-4">
+        <div className="flex flex-wrap gap-2 mb-8 border-b border-[#D7E3EB] pb-4">
           {(Object.keys(zones) as Array<keyof typeof zones>).map((zoneKey) => {
             const z = zones[zoneKey];
             const isActive = activeZone === zoneKey;
@@ -118,10 +115,10 @@ export const ClinicExperienceSection: React.FC = () => {
               <button
                 key={z.id}
                 onClick={() => setActiveZone(zoneKey)}
-                className={`px-5 py-2.5 rounded-2xs text-xs uppercase tracking-wider font-semibold transition-all cursor-pointer ${
+                className={`px-4 py-2.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[#B49A6A] text-[#29483F] shadow-sm font-bold'
-                    : 'bg-[#1E3730] text-[#A5B5A5] hover:text-[#FCFBF8] hover:bg-[#25423A]'
+                    ? 'bg-[#365469] text-[#FFFFFF] shadow-2xs font-bold'
+                    : 'bg-[#FFFFFF] text-[#627482] hover:text-[#263746] hover:bg-[#E4EEF5] border border-[#D7E3EB]'
                 }`}
               >
                 {isBn ? z.tabTitleBn : z.tabTitleEn}
@@ -131,52 +128,52 @@ export const ClinicExperienceSection: React.FC = () => {
         </div>
 
         {/* Tab Content Display */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-[#1E3730] rounded-xs border border-[#34584E] p-6 sm:p-10 lg:p-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-[#FFFFFF] rounded-2xl border border-[#D7E3EB] p-6 sm:p-8 lg:p-10 shadow-sm">
           {/* Left Details */}
           <div className="lg:col-span-6">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[#B49A6A] block mb-2 font-bold">
+            <span className="text-xs uppercase font-semibold tracking-wider text-[#65869C] block mb-2">
               {isBn ? currentZone.eyebrowBn : currentZone.eyebrowEn}
             </span>
 
-            <h3 className="font-serif-atelier text-2xl sm:text-3xl font-normal text-[#FCFBF8] mb-4 leading-tight">
+            <h3 className="font-serif-atelier text-2xl sm:text-3xl font-bold text-[#263746] mb-3 leading-tight">
               {isBn ? currentZone.headlineBn : currentZone.headlineEn}
             </h3>
 
-            <p className="text-xs sm:text-sm text-[#E7E2D8] font-light leading-relaxed mb-6">
+            <p className="text-sm text-[#627482] leading-relaxed mb-6">
               {isBn ? currentZone.descBn : currentZone.descEn}
             </p>
 
-            <div className="space-y-3 mb-8">
+            <div className="space-y-3 mb-6">
               {(isBn ? currentZone.featuresBn : currentZone.featuresEn).map((feat, idx) => (
-                <div key={idx} className="flex items-start gap-2.5 text-xs text-[#A5B5A5]">
-                  <CheckCircle2 className="w-4 h-4 text-[#B49A6A] shrink-0 mt-0.5" />
+                <div key={idx} className="flex items-start gap-2.5 text-xs text-[#263746]">
+                  <CheckCircle2 className="w-4 h-4 text-[#365469] shrink-0 mt-0.5" />
                   <span className="leading-relaxed">{feat}</span>
                 </div>
               ))}
             </div>
 
-            <div className="pt-4 border-t border-[#34584E] flex items-center justify-between text-[11px] text-[#A5B5A5]">
+            <div className="pt-4 border-t border-[#D7E3EB] flex items-center justify-between text-xs text-[#627482]">
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#B49A6A]" />
+                <ShieldCheck className="w-4 h-4 text-[#365469]" />
                 <span>{isBn ? 'বায়োসেফটি স্ট্যান্ডার্ড নিশ্চিত' : 'Audited Biosafety Standard'}</span>
               </span>
-              <span className="font-mono text-[#E7E2D8]">BANANI 11 · PROTOCOL</span>
+              <span className="text-[#365469] font-medium">বনানী ১১ • ঢাকা</span>
             </div>
           </div>
 
           {/* Right Photographic Presentation */}
           <div className="lg:col-span-6">
-            <div className="rounded-xs overflow-hidden border border-[#34584E] aspect-16/11 shadow-lg bg-[#29483F] relative">
+            <div className="rounded-xl overflow-hidden border border-[#D7E3EB] aspect-[16/11] shadow-xs bg-[#E4EEF5] relative">
               <StudioImage
                 src={currentZone.image}
                 alt={currentZone.headlineEn}
-                aspectRatio="aspect-16/11"
+                aspectRatio="aspect-[16/11]"
                 category={currentZone.artworkType}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1E3730]/80 via-transparent to-transparent pointer-events-none"></div>
-              <div className="absolute bottom-3 left-3 bg-[#29483F]/90 backdrop-blur-xs text-[#FCFBF8] px-3 py-1.5 rounded-2xs text-[10px] uppercase font-mono tracking-wider border border-[#E7E2D8]/20 flex items-center gap-2">
-                <Sparkles className="w-3 h-3 text-[#B49A6A]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#263746]/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-3 bg-[#FFFFFF]/90 backdrop-blur-xs text-[#263746] px-3 py-1.5 rounded-md text-[11px] tracking-wide font-medium border border-[#D7E3EB] flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5 text-[#365469]" />
                 <span>{isBn ? 'ক্লিনিক্যাল পরিবেশ প্রদর্শন' : 'Live Facility Environment'}</span>
               </div>
             </div>

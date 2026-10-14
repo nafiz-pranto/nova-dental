@@ -1,44 +1,38 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { useRouter } from '../context/RouterContext';
 import { CLINIC_CONFIG } from '../config/clinicData';
+import { Button } from '../components/ui/Button';
 import { Breadcrumb } from '../components/ui/Breadcrumb';
 import { RouteSeo } from '../components/seo/RouteSeo';
-import { Button } from '../components/ui/Button';
 import { 
-  Calendar, 
-  Clock, 
-  User, 
-  Phone, 
-  MessageCircle, 
   CheckCircle2, 
-  AlertCircle, 
-  ShieldCheck, 
-  Sparkles, 
-  MapPin,
-  Heart,
-  Lock
+  MapPin, 
+  Phone, 
+  User, 
+  Lock, 
+  AlertCircle,
+  ShieldCheck,
+  Heart
 } from 'lucide-react';
 
 export const AppointmentPage: React.FC = () => {
   const { isBn } = useLanguage();
-  const { queryParams, navigate } = useRouter();
 
-  const initialService = queryParams.service || 'smile-design';
-  const [selectedService, setSelectedService] = useState<string>(initialService);
-  const [preferredDate, setPreferredDate] = useState<string>('');
-  const [preferredTime, setPreferredTime] = useState<string>('afternoon');
-  const [patientName, setPatientName] = useState<string>('');
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
-  const [shortNote, setShortNote] = useState<string>('');
-  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
-  const [nameError, setNameError] = useState<string | null>(null);
+  const [selectedService, setSelectedService] = useState(CLINIC_CONFIG.services[0].id);
+  const [patientName, setPatientName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [preferredDate, setPreferredDate] = useState('');
+  const [preferredTime, setPreferredTime] = useState('morning');
+  const [shortNote, setShortNote] = useState('');
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [phoneError, setPhoneError] = useState<string | null>(null);
+  const [nameError, setNameError] = useState<string | null>(null);
 
-  // Validate Bangladesh phone: 01XXXXXXXXX (11 digits) or +8801XXXXXXXXX (14 chars)
-  const validateBdPhone = (phone: string): boolean => {
+  // BD Phone validation: 013-019 (11 digits) or +8801...
+  const validateBdPhone = (phone: string) => {
     const cleaned = phone.replace(/[\s-]/g, '');
-    const bdRegex = /^(?:\+?880|0)1[3-9]\d{8}$/;
+    const bdRegex = /^(?:\+88|88)?(01[3-9]\d{8})$/;
     return bdRegex.test(cleaned);
   };
 
@@ -106,17 +100,17 @@ export const AppointmentPage: React.FC = () => {
 
       {/* Hero Header */}
       <div className="max-w-3xl mb-12">
-        <p className="text-xs font-semibold uppercase tracking-widest text-[#777D77] mb-3">
+        <p className="text-xs font-semibold uppercase tracking-widest text-[#65869C] mb-3">
           {isBn ? 'ব্যক্তিগত ওয়ান-অন-ওয়ান পরামর্শ' : 'Private Consultation Discovery'}
         </p>
 
-        <h1 className="font-serif-atelier text-3xl sm:text-4xl lg:text-5xl font-normal text-[#29483F] tracking-tight leading-tight mb-4 text-balance">
+        <h1 className="font-serif-atelier text-3xl sm:text-4xl lg:text-5xl font-normal text-[#365469] tracking-tight leading-tight mb-4 text-balance">
           {isBn
             ? 'বনানী ১১ স্টুডিওতে আপনার পরামর্শ সময়সূচি নির্ধারণ করুন'
             : 'Schedule Your Private Consultation in Banani'}
         </h1>
 
-        <p className="text-base text-[#343A36] font-light leading-relaxed">
+        <p className="text-base text-[#627482] font-light leading-relaxed">
           {isBn
             ? 'আমরা ভিড়মুক্ত পরিবেশে প্রতি ঘণ্টায় শুধুমাত্র একজন রোগীকে নিবেদিত সময় বরাদ্দ করি। চিকিৎসা শুরুর পূর্বেই খোলামেলা আলোচনা ও লিখিত খরচের স্পষ্ট বিবরণ প্রদান করা হয়।'
             : 'We reserve dedicated private time exclusively for your appointment with zero waiting room chaos and absolute confidentiality.'}
@@ -127,50 +121,50 @@ export const AppointmentPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start mb-16">
         {/* Left Column: Booking Form Container */}
         <div className="lg:col-span-7">
-          <div className="bg-[#FCFBF8] border border-[#E7E2D8] rounded-xs p-7 sm:p-10 shadow-md">
+          <div className="bg-[#FFFFFF] border border-[#D7E3EB] rounded-2xl p-7 sm:p-10 shadow-sm">
             {isSubmitted ? (
               /* Honest Demo Simulation Confirmation */
               <div className="text-center py-8 animate-in fade-in">
-                <div className="w-16 h-16 rounded-full bg-[#E7E2D8] text-[#29483F] flex items-center justify-center mx-auto mb-4 border border-[#B49A6A]">
-                  <CheckCircle2 className="w-10 h-10 text-[#29483F]" />
+                <div className="w-16 h-16 rounded-full bg-[#E4EEF5] text-[#365469] flex items-center justify-center mx-auto mb-4 border border-[#A9C0D0]">
+                  <CheckCircle2 className="w-9 h-9 text-[#365469]" />
                 </div>
 
-                <span className="inline-block px-3 py-1 bg-[#F6F3EC] text-[#29483F] text-[10px] font-mono uppercase tracking-widest rounded-sm mb-3 border border-[#E7E2D8]">
+                <span className="inline-block px-3 py-1 bg-[#F7FAFC] text-[#365469] text-[10px] font-mono uppercase tracking-widest rounded-md mb-3 border border-[#D7E3EB]">
                   DEMO SIMULATION RECEIVED
                 </span>
 
-                <h2 className="font-serif-atelier text-2xl font-normal text-[#29483F] mb-3">
+                <h2 className="font-serif-atelier text-2xl font-normal text-[#365469] mb-3">
                   {isBn ? 'অনুরোধ ফর্ম সফলভাবে যাচাইকৃত!' : 'Request Form Validated Successfully!'}
                 </h2>
 
-                <div className="bg-[#F6F3EC] p-5 rounded-sm border border-[#E7E2D8] text-sm text-[#29483F] font-medium text-center mb-6 shadow-xs leading-relaxed">
+                <div className="bg-[#F7FAFC] p-5 rounded-xl border border-[#D7E3EB] text-sm text-[#263746] font-medium text-center mb-6 shadow-xs leading-relaxed">
                   {isBn
                     ? `ধন্যবাদ, ${patientName}! এটি ক্লায়েন্ট ও টিম পর্যালোচনার জন্য একটি ডেমো ইন্টারফেস। কোনো আসল অ্যাপয়েন্টমেন্ট ডাটাবেজে রেকর্ড করা হয়নি।`
                     : `Thank you, ${patientName}! This is a client presentation demonstration. No live appointment database record was created.`}
                 </div>
 
-                <div className="bg-[#F6F3EC] p-5 rounded-sm border border-[#E7E2D8] text-xs text-[#777D77] text-left space-y-2 mb-6">
-                  <p className="font-semibold text-[#29483F] uppercase tracking-wider text-[10px]">
+                <div className="bg-[#F7FAFC] p-5 rounded-xl border border-[#D7E3EB] text-xs text-[#627482] text-left space-y-2 mb-6">
+                  <p className="font-semibold text-[#365469] uppercase tracking-wider text-[10px]">
                     {isBn ? 'প্রদত্ত অনুরোধের বিবরণ (সিমুলেশন):' : 'Submitted Discovery Details (Simulation):'}
                   </p>
                   <p>
-                    <span className="font-medium text-[#29483F]">{isBn ? 'রোগীর নাম:' : 'Patient Name:'}</span> {patientName}
+                    <span className="font-medium text-[#263746]">{isBn ? 'রোগীর নাম:' : 'Patient Name:'}</span> {patientName}
                   </p>
                   <p>
-                    <span className="font-medium text-[#29483F]">{isBn ? 'মোবাইল নম্বর:' : 'Phone Number:'}</span> {phoneNumber}
+                    <span className="font-medium text-[#263746]">{isBn ? 'মোবাইল নম্বর:' : 'Phone Number:'}</span> {phoneNumber}
                   </p>
                   <p>
-                    <span className="font-medium text-[#29483F]">{isBn ? 'চিকিৎসা বিভাগ:' : 'Discipline:'}</span>{' '}
+                    <span className="font-medium text-[#263746]">{isBn ? 'চিকিৎসা বিভাগ:' : 'Discipline:'}</span>{' '}
                     {isBn ? activeServiceObj.titleBn : activeServiceObj.titleEn}
                   </p>
                   <p>
-                    <span className="font-medium text-[#29483F]">{isBn ? 'পছন্দের সময়:' : 'Preferred Slot:'}</span>{' '}
+                    <span className="font-medium text-[#263746]">{isBn ? 'পছন্দের সময়:' : 'Preferred Slot:'}</span>{' '}
                     {preferredTime} {preferredDate ? `(${preferredDate})` : ''}
                   </p>
                 </div>
 
-                <div className="text-[11px] text-[#777D77] mb-6 flex items-start gap-2 justify-center">
-                  <Lock className="w-4 h-4 text-[#B49A6A] shrink-0 mt-0.5" />
+                <div className="text-[11px] text-[#627482] mb-6 flex items-start gap-2 justify-center">
+                  <Lock className="w-4 h-4 text-[#65869C] shrink-0 mt-0.5" />
                   <span>
                     {isBn
                       ? 'অনবোর্ডিংয়ের সময় এটি সরাসরি ক্লিনিকের প্রাতিষ্ঠানিক হোয়াটসঅ্যাপ বা ম্যানেজমেন্ট সিস্টেমে সংযুক্ত করা হবে।'
@@ -190,25 +184,25 @@ export const AppointmentPage: React.FC = () => {
             ) : (
               /* Interactive Request Form */
               <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="border-b border-[#E7E2D8] pb-4 mb-2 flex items-center justify-between">
-                  <h2 className="font-serif-atelier text-xl font-medium text-[#29483F]">
+                <div className="border-b border-[#D7E3EB] pb-4 mb-2 flex items-center justify-between">
+                  <h2 className="font-serif-atelier text-xl font-medium text-[#365469]">
                     {isBn ? 'পরামর্শ অনুরোধের বিবরণ' : 'Discovery Request Form'}
                   </h2>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#777D77]">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#627482]">
                     STEP 1 OF 1
                   </span>
                 </div>
 
                 {/* Treatment Category */}
                 <div>
-                  <label htmlFor="appointment-service-select" className="block text-xs font-semibold uppercase tracking-wider text-[#777D77] mb-1.5">
+                  <label htmlFor="appointment-service-select" className="block text-xs font-semibold uppercase tracking-wider text-[#627482] mb-1.5">
                     {isBn ? 'চিকিৎসা বা আগ্রহের ক্ষেত্র' : 'Clinical Discipline'} *
                   </label>
                   <select
                     id="appointment-service-select"
                     value={selectedService}
                     onChange={(e) => setSelectedService(e.target.value)}
-                    className="w-full text-xs p-3 bg-[#F6F3EC] border border-[#E7E2D8] rounded-sm text-[#29483F] focus:border-[#B49A6A] focus:outline-none cursor-pointer"
+                    className="w-full text-xs p-3 bg-[#F7FAFC] border border-[#D7E3EB] rounded-lg text-[#263746] focus:border-[#65869C] focus:bg-white focus:outline-none cursor-pointer transition-colors"
                   >
                     {CLINIC_CONFIG.services.map((svc) => (
                       <option key={svc.id} value={svc.id}>
@@ -220,11 +214,11 @@ export const AppointmentPage: React.FC = () => {
 
                 {/* Patient Full Name */}
                 <div>
-                  <label htmlFor="appointment-patient-name" className="block text-xs font-semibold uppercase tracking-wider text-[#777D77] mb-1.5">
+                  <label htmlFor="appointment-patient-name" className="block text-xs font-semibold uppercase tracking-wider text-[#627482] mb-1.5">
                     {isBn ? 'আপনার পূর্ণ নাম' : 'Full Name'} *
                   </label>
                   <div className="relative">
-                    <User className="w-4 h-4 text-[#777D77] absolute left-3 top-3.5" />
+                    <User className="w-4 h-4 text-[#627482] absolute left-3 top-3.5" />
                     <input
                       id="appointment-patient-name"
                       type="text"
@@ -232,8 +226,8 @@ export const AppointmentPage: React.FC = () => {
                       value={patientName}
                       onChange={(e) => setPatientName(e.target.value)}
                       placeholder={isBn ? 'যেমন: তাসনিম আহমেদ' : 'e.g. Asif Chowdhury'}
-                      className={`w-full text-xs pl-9 pr-3 py-3 bg-[#F6F3EC] border rounded-sm text-[#29483F] focus:ring-1 focus:ring-[#B49A6A] outline-none transition-colors ${
-                        nameError ? 'border-red-600 bg-red-50/20' : 'border-[#E7E2D8] focus:border-[#B49A6A]'
+                      className={`w-full text-xs pl-9 pr-3 py-3 bg-[#F7FAFC] border rounded-lg text-[#263746] focus:ring-1 focus:ring-[#65869C] focus:bg-white outline-none transition-colors ${
+                        nameError ? 'border-red-600 bg-red-50/20' : 'border-[#D7E3EB] focus:border-[#65869C]'
                       }`}
                     />
                   </div>
@@ -247,11 +241,11 @@ export const AppointmentPage: React.FC = () => {
 
                 {/* Phone Number with BD Validation */}
                 <div>
-                  <label htmlFor="appointment-phone-number" className="block text-xs font-semibold uppercase tracking-wider text-[#777D77] mb-1.5">
+                  <label htmlFor="appointment-phone-number" className="block text-xs font-semibold uppercase tracking-wider text-[#627482] mb-1.5">
                     {isBn ? 'বাংলাদেশি মোবাইল নম্বর' : 'Phone Number (BD)'} *
                   </label>
                   <div className="relative">
-                    <Phone className="w-4 h-4 text-[#777D77] absolute left-3 top-3.5" />
+                    <Phone className="w-4 h-4 text-[#627482] absolute left-3 top-3.5" />
                     <input
                       id="appointment-phone-number"
                       type="tel"
@@ -259,8 +253,8 @@ export const AppointmentPage: React.FC = () => {
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
                       placeholder="017XXXXXXXX"
-                      className={`w-full text-xs pl-9 pr-3 py-3 bg-[#F6F3EC] border rounded-sm text-[#29483F] focus:ring-1 focus:ring-[#B49A6A] outline-none transition-colors ${
-                        phoneError ? 'border-red-600 bg-red-50/20' : 'border-[#E7E2D8] focus:border-[#B49A6A]'
+                      className={`w-full text-xs pl-9 pr-3 py-3 bg-[#F7FAFC] border rounded-lg text-[#263746] focus:ring-1 focus:ring-[#65869C] focus:bg-white outline-none transition-colors ${
+                        phoneError ? 'border-red-600 bg-red-50/20' : 'border-[#D7E3EB] focus:border-[#65869C]'
                       }`}
                     />
                   </div>
@@ -270,7 +264,7 @@ export const AppointmentPage: React.FC = () => {
                       <span>{phoneError}</span>
                     </p>
                   ) : (
-                    <p className="mt-1 text-[10px] text-[#777D77]">
+                    <p className="mt-1 text-[10px] text-[#627482]">
                       {isBn ? '১১-সংখ্যার বাংলাদেশি মোবাইল নম্বর লিখুন (যেমন: ০১৭XXXXXXXX)' : '11-digit Bangladesh phone number (e.g. 017XXXXXXXX)'}
                     </p>
                   )}
@@ -279,7 +273,7 @@ export const AppointmentPage: React.FC = () => {
                 {/* Preferred Date & Time Slot */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="appointment-date-picker" className="block text-xs font-semibold uppercase tracking-wider text-[#777D77] mb-1.5">
+                    <label htmlFor="appointment-date-picker" className="block text-xs font-semibold uppercase tracking-wider text-[#627482] mb-1.5">
                       {isBn ? 'পছন্দের তারিখ (ঐচ্ছিক)' : 'Preferred Date (Optional)'}
                     </label>
                     <input
@@ -287,19 +281,19 @@ export const AppointmentPage: React.FC = () => {
                       type="date"
                       value={preferredDate}
                       onChange={(e) => setPreferredDate(e.target.value)}
-                      className="w-full text-xs p-3 bg-[#F6F3EC] border border-[#E7E2D8] rounded-sm text-[#29483F] focus:border-[#B49A6A] outline-none"
+                      className="w-full text-xs p-3 bg-[#F7FAFC] border border-[#D7E3EB] rounded-lg text-[#263746] focus:border-[#65869C] focus:bg-white outline-none"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="appointment-time-slot" className="block text-xs font-semibold uppercase tracking-wider text-[#777D77] mb-1.5">
+                    <label htmlFor="appointment-time-slot" className="block text-xs font-semibold uppercase tracking-wider text-[#627482] mb-1.5">
                       {isBn ? 'পছন্দের সময় স্লট' : 'Preferred Slot'}
                     </label>
                     <select
                       id="appointment-time-slot"
                       value={preferredTime}
                       onChange={(e) => setPreferredTime(e.target.value)}
-                      className="w-full text-xs p-3 bg-[#F6F3EC] border border-[#E7E2D8] rounded-sm text-[#29483F] focus:border-[#B49A6A] outline-none cursor-pointer"
+                      className="w-full text-xs p-3 bg-[#F7FAFC] border border-[#D7E3EB] rounded-lg text-[#263746] focus:border-[#65869C] focus:bg-white outline-none cursor-pointer"
                     >
                       <option value="morning">{isBn ? 'সকাল (১০:০০ AM - ১:০০ PM)' : 'Morning (10:00 AM - 1:00 PM)'}</option>
                       <option value="afternoon">{isBn ? 'দুপুর (২:০০ PM - ৫:০০ PM)' : 'Afternoon (2:00 PM - 5:00 PM)'}</option>
@@ -310,7 +304,7 @@ export const AppointmentPage: React.FC = () => {
 
                 {/* Notes or Prior Anxiety */}
                 <div>
-                  <label htmlFor="appointment-clinical-notes" className="block text-xs font-semibold uppercase tracking-wider text-[#777D77] mb-1.5">
+                  <label htmlFor="appointment-clinical-notes" className="block text-xs font-semibold uppercase tracking-wider text-[#627482] mb-1.5">
                     {isBn ? 'চিকিৎসাভীতি বা বিশেষ কোনো লক্ষণ (ঐচ্ছিক)' : 'Anxiety / Clinical Notes (Optional)'}
                   </label>
                   <textarea
@@ -323,13 +317,13 @@ export const AppointmentPage: React.FC = () => {
                         ? 'আপনার পূর্ববর্তী অভিজ্ঞতা, দাঁতের সংবেদনশীলতা বা বিশেষ কোনো সুবিধা...'
                         : 'Any prior sensitivity, dental anxiety, or questions you wish to clarify...'
                     }
-                    className="w-full text-xs p-3 bg-[#F6F3EC] border border-[#E7E2D8] rounded-sm text-[#29483F] focus:border-[#B49A6A] outline-none"
+                    className="w-full text-xs p-3 bg-[#F7FAFC] border border-[#D7E3EB] rounded-lg text-[#263746] focus:border-[#65869C] focus:bg-white outline-none"
                   />
                 </div>
 
                 {/* Privacy and Trust Assurance */}
-                <div className="p-4 bg-[#F6F3EC] rounded-sm border border-[#E7E2D8] flex items-start gap-2.5 text-[11px] text-[#777D77] leading-relaxed">
-                  <Lock className="w-3.5 h-3.5 text-[#B49A6A] shrink-0 mt-0.5" />
+                <div className="p-4 bg-[#E4EEF5]/40 rounded-xl border border-[#D7E3EB] flex items-start gap-2.5 text-[11px] text-[#627482] leading-relaxed">
+                  <Lock className="w-3.5 h-3.5 text-[#65869C] shrink-0 mt-0.5" />
                   <span>
                     {isBn
                       ? 'আপনার ফোন নম্বর ও স্বাস্থ্য তথ্য কঠোরভাবে গোপন থাকবে। কোনো অনাকাঙ্ক্ষিত বাণিজ্যিক কল বা এসএমএস পাঠানো হবে না।'
@@ -343,7 +337,7 @@ export const AppointmentPage: React.FC = () => {
                     type="submit"
                     variant="primary"
                     size="lg"
-                    className="w-full cursor-pointer focus:ring-2 focus:ring-[#B49A6A]"
+                    className="w-full cursor-pointer justify-center"
                   >
                     {isBn ? 'পরামর্শ সময়সূচির অনুরোধ পাঠান' : 'Submit Consultation Request'}
                   </Button>
@@ -356,58 +350,58 @@ export const AppointmentPage: React.FC = () => {
         {/* Right Column: Practice Environment & Location Context */}
         <div className="lg:col-span-5 space-y-6">
           {/* Selected Discipline Preview Card */}
-          <div className="p-7 bg-[#FCFBF8] border border-[#E7E2D8] rounded-sm shadow-2xs">
-            <span className="text-[10px] uppercase font-mono tracking-wider text-[#B49A6A] block mb-1 font-bold">
+          <div className="p-7 bg-[#FFFFFF] border border-[#D7E3EB] rounded-2xl shadow-sm">
+            <span className="text-[10px] uppercase font-mono tracking-wider text-[#65869C] block mb-1 font-bold">
               SELECTED DISCIPLINE
             </span>
-            <h3 className="font-serif-atelier text-xl font-medium text-[#29483F] mb-3">
+            <h3 className="font-serif-atelier text-xl font-medium text-[#365469] mb-3">
               {isBn ? activeServiceObj.titleBn : activeServiceObj.titleEn}
             </h3>
-            <p className="text-xs text-[#777D77] leading-relaxed font-light mb-4">
+            <p className="text-xs text-[#627482] leading-relaxed font-light mb-4">
               {isBn ? activeServiceObj.summaryBn : activeServiceObj.summaryEn}
             </p>
 
-            <div className="pt-4 border-t border-[#E7E2D8] space-y-2 text-xs text-[#343A36]">
+            <div className="pt-4 border-t border-[#D7E3EB] space-y-2 text-xs text-[#263746]">
               <div className="flex items-start gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#B49A6A] shrink-0 mt-0.5" />
+                <ShieldCheck className="w-4 h-4 text-[#65869C] shrink-0 mt-0.5" />
                 <span>{isBn ? 'কনজারভেটিভ প্রাকৃতিক দাঁত সংরক্ষণ' : 'Preservation-first clinical philosophy'}</span>
               </div>
               <div className="flex items-start gap-2">
-                <Heart className="w-4 h-4 text-[#B49A6A] shrink-0 mt-0.5" />
+                <Heart className="w-4 h-4 text-[#65869C] shrink-0 mt-0.5" />
                 <span>{isBn ? 'রেইজ-হ্যান্ড পজ নিশ্চয়তা (সম্পূর্ণ স্বাচ্ছন্দ্য)' : 'Raise-Hand Pause guarantee throughout'}</span>
               </div>
               <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#B49A6A] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#65869C] shrink-0 mt-0.5" />
                 <span>{isBn ? 'চিকিৎসা শুরুর পূর্বেই লিখিত হিসাব' : 'Itemized written plan before care starts'}</span>
               </div>
             </div>
           </div>
 
           {/* Location & Pacing Architecture */}
-          <div className="p-7 bg-[#FCFBF8] border border-[#E7E2D8] rounded-sm shadow-2xs">
+          <div className="p-7 bg-[#FFFFFF] border border-[#D7E3EB] rounded-2xl shadow-sm">
             <div className="flex items-center gap-3 mb-4">
-              <MapPin className="w-5 h-5 text-[#B49A6A] shrink-0" />
+              <MapPin className="w-5 h-5 text-[#65869C] shrink-0" />
               <div>
-                <span className="text-[10px] uppercase font-mono tracking-wider text-[#777D77] block font-semibold">
+                <span className="text-[10px] uppercase font-mono tracking-wider text-[#627482] block font-semibold">
                   BANANI 11 ATELIER
                 </span>
-                <p className="text-xs font-medium text-[#29483F]">
+                <p className="text-xs font-medium text-[#365469]">
                   {isBn ? CLINIC_CONFIG.brand.addressBn : CLINIC_CONFIG.brand.addressEn}
                 </p>
               </div>
             </div>
 
-            <p className="text-xs text-[#777D77] leading-relaxed font-light mb-4">
+            <p className="text-xs text-[#627482] leading-relaxed font-light mb-4">
               {isBn
                 ? 'আমরা ভিড়মুক্ত ক্লিনিক্যাল পরিবেশে বিশ্বাস করি। প্রতিটি অ্যাপয়েন্টমেন্টে শুধুমাত্র ১ জন রোগীর জন্য নিবেদিত সময় নির্ধারিত থাকে।'
                 : 'Dedicated one-on-one clinician time in a private, daylight suite with elevator access and on-site parking.'}
             </p>
 
-            <div className="pt-3 border-t border-[#E7E2D8] flex items-center justify-between text-xs text-[#29483F]">
-              <span className="text-[#777D77]">
+            <div className="pt-3 border-t border-[#D7E3EB] flex items-center justify-between text-xs text-[#365469]">
+              <span className="text-[#627482]">
                 {isBn ? 'সাপ্তাহিক সময়সূচি:' : 'Studio Hours:'}
               </span>
-              <span className="font-semibold text-[#29483F]">
+              <span className="font-semibold text-[#365469]">
                 ১০:০০ AM - ৮:৩০ PM
               </span>
             </div>

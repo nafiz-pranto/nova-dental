@@ -47,7 +47,7 @@ export const StudioImage: React.FC<StudioImageProps> = ({
   };
 
   return (
-    <div className={`relative overflow-hidden bg-[#EAE3D5] ${className} ${aspectRatio || ''}`}>
+    <div className={`relative overflow-hidden bg-[#E4EEF5] ${className} ${aspectRatio || ''}`}>
       {!hasError ? (
         <img
           src={src}
@@ -64,12 +64,11 @@ export const StudioImage: React.FC<StudioImageProps> = ({
           {...props}
         />
       ) : (
-        /* Curated Atelier Architectural Vector Fallback */
-        <div className="w-full h-full flex items-center justify-center bg-[#FCFBF8]">
+        /* Curated Architectural Vector Fallback in muted blue */
+        <div className="w-full h-full flex items-center justify-center bg-[#FFFFFF]">
           {renderArtwork()}
         </div>
       )}
     </div>
   );
 };
-

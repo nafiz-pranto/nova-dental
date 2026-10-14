@@ -12,47 +12,44 @@ export const Card: React.FC<CardProps> = ({
   children,
   className = '',
   variant = 'light',
-  hoverEffect = true,
+  hoverEffect = false,
   onClick,
 }) => {
   const variantStyles = {
-    light: 'bg-[#FCFBF8] border border-[#E7E2D8] text-[#343A36]',
-    subtle: 'bg-[#F6F3EC] border border-[#E7E2D8] text-[#343A36]',
-    dark: 'bg-[#29483F] text-[#FCFBF8] border border-[#34584E]',
-    outline: 'bg-transparent border border-[#E7E2D8] text-[#343A36]',
+    light: 'bg-[#FFFFFF] border border-[#D7E3EB] text-[#263746]',
+    subtle: 'bg-[#E4EEF5] border border-[#D7E3EB] text-[#263746]',
+    dark: 'bg-[#365469] border border-[#65869C]/40 text-[#FFFFFF]',
+    outline: 'bg-transparent border border-[#D7E3EB] text-[#263746]',
   };
 
-  const hoverClass = hoverEffect
-    ? 'hover:border-[#B49A6A] hover:shadow-md transition-all duration-300'
+  const hoverStyles = hoverEffect
+    ? 'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-[#A9C0D0] cursor-pointer'
     : '';
 
   return (
     <div
       onClick={onClick}
-      className={`rounded-sm p-6 sm:p-7 ${variantStyles[variant]} ${hoverClass} ${
-        onClick ? 'cursor-pointer' : ''
-      } ${className}`}
+      className={`rounded-lg p-6 ${variantStyles[variant]} ${hoverStyles} ${className}`}
     >
       {children}
     </div>
   );
 };
 
-export const Badge: React.FC<{
+export const CardBadge: React.FC<{
   children: React.ReactNode;
-  variant?: 'gold' | 'neutral' | 'sage' | 'dark';
+  variant?: 'primary' | 'neutral' | 'subtle';
   className?: string;
 }> = ({ children, variant = 'neutral', className = '' }) => {
   const styles = {
-    gold: 'bg-[#F6F3EC] text-[#B49A6A] border-[#E7E2D8]',
-    neutral: 'bg-[#E7E2D8] text-[#343A36] border-[#D5CEC2]',
-    sage: 'bg-[#A5B5A5]/25 text-[#29483F] border-[#A5B5A5]/50',
-    dark: 'bg-[#29483F] text-[#FCFBF8] border-[#34584E]',
+    primary: 'bg-[#E4EEF5] text-[#365469] border border-[#D7E3EB]',
+    neutral: 'bg-[#F7FAFC] text-[#627482] border border-[#D7E3EB]',
+    subtle: 'bg-[#FFFFFF] text-[#65869C] border border-[#D7E3EB]',
   };
 
   return (
     <span
-      className={`inline-flex items-center px-2 py-0.5 text-[10px] uppercase font-medium tracking-wider rounded-sm border ${styles[variant]} ${className}`}
+      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-medium rounded-full ${styles[variant]} ${className}`}
     >
       {children}
     </span>

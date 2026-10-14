@@ -5,12 +5,10 @@ import { Button } from '../ui/Button';
 import { 
   X, 
   Calendar, 
-  Clock, 
   User, 
   Phone, 
   CheckCircle2, 
   AlertCircle,
-  Sparkles,
   Lock
 } from 'lucide-react';
 
@@ -85,32 +83,32 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#29483F]/75 backdrop-blur-xs animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#263746]/60 backdrop-blur-xs animate-in fade-in duration-200">
       <div 
-        className="relative w-full max-w-xl bg-[#FCFBF8] rounded-sm border border-[#E7E2D8] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+        className="relative w-full max-w-xl bg-[#FFFFFF] rounded-2xl border border-[#D7E3EB] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-labelledby="booking-modal-title"
       >
         {/* Modal Header */}
-        <div className="bg-[#29483F] text-[#FCFBF8] px-6 py-4 flex items-center justify-between border-b border-[#34584E]">
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-sm bg-[#B49A6A] text-[#29483F] flex items-center justify-center font-bold text-xs">
+        <div className="bg-[#365469] text-[#FFFFFF] px-6 py-4 flex items-center justify-between border-b border-[#65869C]/40">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-[#E4EEF5] text-[#365469] flex items-center justify-center font-bold text-xs">
               <Calendar className="w-4 h-4" />
             </div>
             <div>
-              <h2 id="booking-modal-title" className="font-serif-atelier text-lg font-normal text-[#FCFBF8] leading-tight">
+              <h2 id="booking-modal-title" className="font-serif-atelier text-lg font-bold text-[#FFFFFF] leading-tight">
                 {isBn ? 'পরামর্শ অনুরোধ' : 'Request Consultation'}
               </h2>
-              <span className="text-[10px] text-[#A5B5A5] font-light">
+              <span className="text-[11px] text-[#A9C0D0]">
                 {isBn ? 'বনানী ১১, ঢাকা • ১-অন-১ নিবেদিত সময়' : 'Banani 11, Dhaka • Dedicated 1-on-1 Pacing'}
               </span>
             </div>
           </div>
           <button
             onClick={handleReset}
-            className="text-[#A5B5A5] hover:text-[#FCFBF8] p-1 rounded-sm transition-colors cursor-pointer"
+            className="text-[#E4EEF5] hover:text-[#FFFFFF] p-1 rounded-md transition-colors cursor-pointer"
             aria-label={isBn ? 'বন্ধ করুন' : 'Close modal'}
           >
             <X className="w-5 h-5" />
@@ -122,30 +120,30 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           {isSubmitted ? (
             /* Honest Demo Confirmation */
             <div className="text-center py-6 animate-in fade-in">
-              <div className="w-14 h-14 rounded-full bg-[#E7E2D8] text-[#29483F] flex items-center justify-center mx-auto mb-4 border border-[#B49A6A]">
-                <CheckCircle2 className="w-8 h-8 text-[#29483F]" />
+              <div className="w-14 h-14 rounded-full bg-[#E4EEF5] text-[#365469] flex items-center justify-center mx-auto mb-4 border border-[#D7E3EB]">
+                <CheckCircle2 className="w-8 h-8 text-[#365469]" />
               </div>
 
-              <span className="inline-block px-3 py-0.5 bg-[#F6F3EC] text-[#29483F] text-[10px] font-mono uppercase tracking-widest rounded-sm mb-3 border border-[#E7E2D8]">
-                DEMO SIMULATION RECEIVED
+              <span className="inline-block px-3 py-1 bg-[#E4EEF5] text-[#365469] text-xs font-semibold rounded-md mb-3 border border-[#D7E3EB]">
+                {isBn ? 'ডেমো অনুরোধ যাচাইকৃত' : 'DEMO SIMULATION RECEIVED'}
               </span>
 
-              <h3 className="font-serif-atelier text-xl font-normal text-[#29483F] mb-3">
+              <h3 className="font-serif-atelier text-xl font-bold text-[#263746] mb-3">
                 {isBn ? 'অনুরোধ ফর্ম সফলভাবে যাচাইকৃত' : 'Request Validated for Client Review'}
               </h3>
 
-              <div className="bg-[#F6F3EC] p-4 rounded-sm border border-[#E7E2D8] text-xs text-[#343A36] text-left space-y-2 mb-6">
-                <p className="font-medium text-[#29483F]">
+              <div className="bg-[#F7FAFC] p-4 rounded-xl border border-[#D7E3EB] text-xs text-[#263746] text-left space-y-2 mb-6">
+                <p className="font-semibold text-[#365469]">
                   {isBn
                     ? `ধন্যবাদ, ${patientName}! এটি একটি ক্লায়েন্ট প্রেজেন্টেশন ডেমো ইন্টারফেস। কোনো আসল অ্যাপয়েন্টমেন্ট ডাটাবেজে তৈরি হয়নি।`
                     : `Thank you, ${patientName}! This is a client presentation demonstration. No live appointment database record was created.`}
                 </p>
-                <div className="pt-2 border-t border-[#E7E2D8] text-[11px] text-[#777D77] space-y-1">
+                <div className="pt-2 border-t border-[#D7E3EB] text-xs text-[#627482] space-y-1">
                   <p>
-                    <span className="font-medium text-[#29483F]">{isBn ? 'মোবাইল নম্বর:' : 'Phone:'}</span> {phoneNumber}
+                    <span className="font-medium text-[#263746]">{isBn ? 'মোবাইল নম্বর:' : 'Phone:'}</span> {phoneNumber}
                   </p>
                   <p>
-                    <span className="font-medium text-[#29483F]">{isBn ? 'নির্বাচিত সেবা:' : 'Selected Discipline:'}</span>{' '}
+                    <span className="font-medium text-[#263746]">{isBn ? 'নির্বাচিত সেবা:' : 'Selected Discipline:'}</span>{' '}
                     {CLINIC_CONFIG.services.find((s) => s.id === selectedService)?.titleEn || selectedService}
                   </p>
                 </div>
@@ -160,14 +158,14 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Treatment Category */}
               <div>
-                <label htmlFor="modal-service" className="block text-xs font-semibold uppercase tracking-wider text-[#777D77] mb-1.5">
+                <label htmlFor="modal-service" className="block text-xs font-semibold text-[#263746] mb-1.5">
                   {isBn ? 'চিকিৎসা বা আগ্রহের ক্ষেত্র' : 'Clinical Discipline'}
                 </label>
                 <select
                   id="modal-service"
                   value={selectedService}
                   onChange={(e) => setSelectedService(e.target.value)}
-                  className="w-full text-xs p-3 bg-[#F6F3EC] border border-[#E7E2D8] rounded-sm text-[#29483F] focus:border-[#B49A6A] focus:outline-none cursor-pointer"
+                  className="w-full text-xs p-3 bg-[#F7FAFC] border border-[#D7E3EB] rounded-md text-[#263746] focus:border-[#365469] focus:outline-none cursor-pointer"
                 >
                   {CLINIC_CONFIG.services.map((svc) => (
                     <option key={svc.id} value={svc.id}>
@@ -180,7 +178,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               {/* Preferred Date & Time */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label htmlFor="modal-date" className="block text-xs font-semibold uppercase tracking-wider text-[#777D77] mb-1.5">
+                  <label htmlFor="modal-date" className="block text-xs font-semibold text-[#263746] mb-1.5">
                     {isBn ? 'পছন্দের তারিখ (ঐচ্ছিক)' : 'Preferred Date (Optional)'}
                   </label>
                   <input
@@ -188,19 +186,19 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     type="date"
                     value={preferredDate}
                     onChange={(e) => setPreferredDate(e.target.value)}
-                    className="w-full text-xs p-3 bg-[#F6F3EC] border border-[#E7E2D8] rounded-sm text-[#29483F] focus:border-[#B49A6A] focus:outline-none"
+                    className="w-full text-xs p-3 bg-[#F7FAFC] border border-[#D7E3EB] rounded-md text-[#263746] focus:border-[#365469] focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="modal-time" className="block text-xs font-semibold uppercase tracking-wider text-[#777D77] mb-1.5">
+                  <label htmlFor="modal-time" className="block text-xs font-semibold text-[#263746] mb-1.5">
                     {isBn ? 'পছন্দের সময়' : 'Preferred Slot'}
                   </label>
                   <select
                     id="modal-time"
                     value={preferredTime}
                     onChange={(e) => setPreferredTime(e.target.value)}
-                    className="w-full text-xs p-3 bg-[#F6F3EC] border border-[#E7E2D8] rounded-sm text-[#29483F] focus:border-[#B49A6A] focus:outline-none cursor-pointer"
+                    className="w-full text-xs p-3 bg-[#F7FAFC] border border-[#D7E3EB] rounded-md text-[#263746] focus:border-[#365469] focus:outline-none cursor-pointer"
                   >
                     <option value="morning">{isBn ? 'সকাল (১০:০০ AM - ১:০০ PM)' : 'Morning (10:00 AM - 1:00 PM)'}</option>
                     <option value="afternoon">{isBn ? 'দুপুর (২:০০ PM - ৫:০০ PM)' : 'Afternoon (2:00 PM - 5:00 PM)'}</option>
@@ -211,26 +209,26 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
               {/* Patient Full Name */}
               <div>
-                <label htmlFor="modal-name" className="block text-xs font-semibold uppercase tracking-wider text-[#777D77] mb-1.5">
+                <label htmlFor="modal-name" className="block text-xs font-semibold text-[#263746] mb-1.5">
                   {isBn ? 'আপনার পূর্ণ নাম' : 'Full Name'} *
                 </label>
                 <div className="relative">
-                  <User className="w-4 h-4 text-[#777D77] absolute left-3 top-3.5" />
+                  <User className="w-4 h-4 text-[#627482] absolute left-3 top-3.5" />
                   <input
                     id="modal-name"
                     type="text"
                     required
                     value={patientName}
                     onChange={(e) => setPatientName(e.target.value)}
-                    placeholder={isBn ? 'যেমন: তাসনিম রহমান' : 'e.g. Dr. Asif Mahmud'}
-                    className={`w-full text-xs pl-9 pr-3 py-3 bg-[#F6F3EC] border rounded-sm text-[#29483F] focus:border-[#B49A6A] focus:outline-none transition-colors ${
-                      nameError ? 'border-red-600 bg-red-50/20' : 'border-[#E7E2D8]'
+                    placeholder={isBn ? 'যেমন: তাসনিম রহমান' : 'e.g. Sarah Khan'}
+                    className={`w-full text-xs pl-9 pr-3 py-2.5 bg-[#F7FAFC] border rounded-md text-[#263746] focus:border-[#365469] focus:outline-none transition-colors ${
+                      nameError ? 'border-red-600 bg-red-50/20' : 'border-[#D7E3EB]'
                     }`}
                   />
                 </div>
                 {nameError && (
-                  <p className="mt-1 text-[11px] text-red-600 flex items-center gap-1">
-                    <AlertCircle className="w-3 h-3" />
+                  <p className="mt-1 text-xs text-red-600 flex items-center gap-1">
+                    <AlertCircle className="w-3.5 h-3.5" />
                     <span>{nameError}</span>
                   </p>
                 )}
@@ -238,11 +236,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
               {/* Phone Number with BD Validation */}
               <div>
-                <label htmlFor="modal-phone" className="block text-xs font-semibold uppercase tracking-wider text-[#777D77] mb-1.5">
+                <label htmlFor="modal-phone" className="block text-xs font-semibold text-[#263746] mb-1.5">
                   {isBn ? 'বাংলাদেশি মোবাইল নম্বর' : 'Phone Number (BD)'} *
                 </label>
                 <div className="relative">
-                  <Phone className="w-4 h-4 text-[#777D77] absolute left-3 top-3.5" />
+                  <Phone className="w-4 h-4 text-[#627482] absolute left-3 top-3.5" />
                   <input
                     id="modal-phone"
                     type="tel"
@@ -250,14 +248,14 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     placeholder="017XXXXXXXX"
-                    className={`w-full text-xs pl-9 pr-3 py-3 bg-[#F6F3EC] border rounded-sm text-[#29483F] focus:border-[#B49A6A] focus:outline-none transition-colors ${
-                      phoneError ? 'border-red-600 bg-red-50/20' : 'border-[#E7E2D8]'
+                    className={`w-full text-xs pl-9 pr-3 py-2.5 bg-[#F7FAFC] border rounded-md text-[#263746] focus:border-[#365469] focus:outline-none transition-colors ${
+                      phoneError ? 'border-red-600 bg-red-50/20' : 'border-[#D7E3EB]'
                     }`}
                   />
                 </div>
                 {phoneError && (
-                  <p className="mt-1 text-[11px] text-red-600 flex items-center gap-1">
-                    <AlertCircle className="w-3 h-3" />
+                  <p className="mt-1 text-xs text-red-600 flex items-center gap-1">
+                    <AlertCircle className="w-3.5 h-3.5" />
                     <span>{phoneError}</span>
                   </p>
                 )}
@@ -265,7 +263,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
               {/* Comfort or Special Instructions */}
               <div>
-                <label htmlFor="modal-note" className="block text-xs font-semibold uppercase tracking-wider text-[#777D77] mb-1.5">
+                <label htmlFor="modal-note" className="block text-xs font-semibold text-[#263746] mb-1.5">
                   {isBn ? 'বিশেষ কোনো লক্ষণ বা স্বাচ্ছন্দ্য অনুরোধ (ঐচ্ছিক)' : 'Comfort / Clinical Notes (Optional)'}
                 </label>
                 <textarea
@@ -278,13 +276,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                       ? 'চিকিৎসাভীতি, পূর্ববর্তী সংবেদনশীলতা বা বিশেষ জিজ্ঞাসা...'
                       : 'Prior sensitivity, dental anxiety notes, or specific inquiry...'
                   }
-                  className="w-full text-xs p-3 bg-[#F6F3EC] border border-[#E7E2D8] rounded-sm text-[#29483F] focus:border-[#B49A6A] focus:outline-none"
+                  className="w-full text-xs p-3 bg-[#F7FAFC] border border-[#D7E3EB] rounded-md text-[#263746] focus:border-[#365469] focus:outline-none"
                 />
               </div>
 
               {/* Privacy Reassurance */}
-              <div className="p-3 bg-[#F6F3EC] rounded-sm border border-[#E7E2D8] flex items-center gap-2 text-[11px] text-[#777D77]">
-                <Lock className="w-3.5 h-3.5 text-[#B49A6A] shrink-0" />
+              <div className="p-3 bg-[#E4EEF5] rounded-lg border border-[#D7E3EB] flex items-center gap-2 text-xs text-[#263746]">
+                <Lock className="w-3.5 h-3.5 text-[#365469] shrink-0" />
                 <span>
                   {isBn
                     ? 'আপনার তথ্য সম্পূর্ণ গোপন থাকবে। কোনো মার্কেটিং কল বা মেসেজ পাঠানো হয় না।'

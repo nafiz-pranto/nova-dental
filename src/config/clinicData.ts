@@ -68,18 +68,18 @@ export const CLINIC_CONFIG = {
   ],
 
   hero: {
-    eyebrowEn: 'Banani, Dhaka • Private Dental Clinic',
-    eyebrowBn: 'বনানী, ঢাকা • প্রাইভেট ডেন্টাল ক্লিনিক',
-    headlineEn: 'Advanced Technology Meets Gentle, Trusted Dental Care',
-    headlineBn: 'আধুনিক প্রযুক্তিতে নির্ভরযোগ্য ও প্রশান্তিময় ডেন্টাল সেবা',
+    eyebrowEn: 'Banani 11, Dhaka • Private Dental Studio',
+    eyebrowBn: 'বনানী ১১, ঢাকা • প্রাইভেট ডেন্টাল স্টুডিও',
+    headlineEn: 'Caring Dental Excellence for Your Confident Smile',
+    headlineBn: 'আপনার সুন্দর হাসির যত্নে, পাশে আছি আমরা',
     subheadEn:
-      'Comfortable, compassionate dental care for you and your family, guided by experienced dental professionals in a calm, modern environment.',
+      'Gentle, modern dental care for you and your family in Banani 11, Dhaka. Unhurried appointments guided by patient comfort and digital precision.',
     subheadBn:
-      'অভিজ্ঞ ডেন্টাল পেশাজীবীদের যত্নে আপনার ও আপনার পরিবারের জন্য আরামদায়ক ও যত্নশীল ডেন্টাল কেয়ার।',
+      'আপনার ও আপনার পরিবারের জন্য যত্নশীল ডেন্টাল সেবা। বনানী ১১, ঢাকায় শান্ত পরিবেশে আধুনিক প্রযুক্তির নির্ভরযোগ্য চিকিৎসা।',
     primaryCtaEn: 'Request an Appointment',
     primaryCtaBn: 'অ্যাপয়েন্টমেন্ট নির্ধারণ করুন',
-    secondaryCtaEn: 'WhatsApp Inquiry',
-    secondaryCtaBn: 'হোয়াটসঅ্যাপে যোগাযোগ',
+    secondaryCtaEn: 'Call or WhatsApp',
+    secondaryCtaBn: 'কল বা হোয়াটসঅ্যাপ',
   },
 
   trustPillars: [

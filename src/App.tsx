@@ -33,11 +33,6 @@ function StudioAppContent() {
   const [activeDetailService, setActiveDetailService] = useState<ServiceItem | null>(null);
   const [showDemoBanner, setShowDemoBanner] = useState<boolean>(true);
 
-  const handleOpenBooking = (serviceId?: string) => {
-    if (serviceId) setSelectedServiceId(serviceId);
-    setBookingOpen(true);
-  };
-
   // Match routes
   const renderCurrentRoute = () => {
     // 1. Service Detail Route: /services/:id
@@ -74,13 +69,13 @@ function StudioAppContent() {
     // Default: Master Production Homepage
     return (
       <>
-        {/* Hero Section */}
+        {/* Distinctive Muted Blue Hero Section with Authentic Doctor-Patient Photography */}
         <HeroSection onOpenBooking={() => navigate('/appointment')} />
 
-        {/* Restrained Trust & Hygiene Strip */}
+        {/* Clinical Standards & Hygiene Strip */}
         <TrustStrip />
 
-        {/* Featured Services with Quick View & Full Protocol links */}
+        {/* Featured Dental Services with Filter Bar */}
         <ServicesSection
           onSelectService={(service) => setActiveDetailService(service)}
           onOpenBookingForService={(svcId) => navigate(`/appointment?service=${svcId}`)}
@@ -89,10 +84,10 @@ function StudioAppContent() {
         {/* Patient Journey ("What to Expect") */}
         <PatientJourneySection onOpenBooking={() => navigate('/appointment')} />
 
-        {/* Clinic Environment & Technology */}
+        {/* Clinic Atmosphere & 3D Technology */}
         <ClinicExperienceSection />
 
-        {/* Clinical Team & Conservative Philosophy */}
+        {/* Clinical Team & Conservative Dental Ethos */}
         <TeamSection onOpenBooking={() => navigate('/appointment')} />
 
         {/* Practical FAQs */}
@@ -105,13 +100,13 @@ function StudioAppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F6F3EC] text-[#343A36] flex flex-col font-sans selection:bg-[#B49A6A]/25 selection:text-[#29483F] antialiased">
+    <div className="min-h-screen bg-[#F7FAFC] text-[#263746] flex flex-col font-sans selection:bg-[#A9C0D0]/30 selection:text-[#263746] antialiased">
       {/* Route-level SEO for Master Homepage */}
       {path === '/' && (
         <RouteSeo
-          titleEn="NOVA Dental Studio | Conservative Restorative Dentistry • Banani, Dhaka"
+          titleEn="NOVA Dental Studio | Modern & Gentle Dental Care • Banani, Dhaka"
           titleBn="নোভা ডেন্টাল স্টুডিও | আধুনিক ও আরামদায়ক দন্ত্য চিকিৎসা • বনানী, ঢাকা"
-          descriptionEn="Architectural, patient-led dental care in Banani, Dhaka. Conservative restorative dentistry, digital smile design, and European Class-B hospital sterilization."
+          descriptionEn="Modern, patient-led dental care in Banani, Dhaka. Conservative restorative dentistry, digital smile design, and European Class-B hospital sterilization."
           descriptionBn="বনানী, ঢাকায় আধুনিক ও শান্ত পরিবেশে দন্ত্য সেবা। প্রাকৃতিক দাঁত সংরক্ষণ, ডিজিটাল স্মাইল ডিজাইন এবং আন্তর্জাতিক ক্লাস-বি জীবাণুমুক্তকরণ সুরক্ষা।"
           canonicalPath="/"
           schemaData={{
@@ -119,7 +114,7 @@ function StudioAppContent() {
             '@type': 'Dentist',
             'name': 'NOVA Dental Studio (Sample Demo Prototype)',
             'alternateName': 'নোভা ডেন্টাল স্টুডিও (ডেমো প্রোটোটাইপ)',
-            'description': 'Architectural and conservative restorative dental clinic concept in Banani, Dhaka. Agency demonstration prototype with sample clinician profiles and illustrative mock data.',
+            'description': 'Modern and conservative restorative dental clinic in Banani, Dhaka. Agency demonstration prototype with sample clinician profiles and illustrative mock data.',
             'disambiguatingDescription': 'Fictional client presentation prototype. Not a verified or active commercial healthcare entity.',
             'url': window.location.origin,
             'address': {
@@ -154,21 +149,21 @@ function StudioAppContent() {
         />
       )}
 
-      {/* 0. Top Presentation Demo Banner in Muted Forest */}
+      {/* Top Presentation Demo Banner in Muted Light Blue */}
       {showDemoBanner && (
-        <aside aria-label="Demo notice" className="bg-[#1E3730] text-[#FCFBF8] px-4 py-1.5 text-xs border-b border-[#29483F] flex items-center justify-between z-50">
+        <aside aria-label="Demo notice" className="bg-[#E4EEF5] text-[#365469] px-4 py-1.5 text-xs border-b border-[#D7E3EB] flex items-center justify-between z-50">
           <div className="max-w-7xl mx-auto w-full flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
-              <span className="font-mono text-[10px] uppercase tracking-wider text-[#B49A6A] font-bold">
+              <span className="text-[10px] uppercase font-bold text-[#365469] bg-[#FFFFFF] px-2 py-0.5 rounded border border-[#D7E3EB]">
                 CLIENT PRESENTATION DEMO
               </span>
-              <span className="text-[#A5B5A5] text-[11px] hidden sm:inline">
+              <span className="text-[#627482] text-xs hidden sm:inline">
                 • {isBn ? CLINIC_CONFIG.demoNoticeBn : CLINIC_CONFIG.demoNoticeEn}
               </span>
             </div>
             <button
               onClick={() => setShowDemoBanner(false)}
-              className="text-[#A5B5A5] hover:text-[#FCFBF8] p-0.5 rounded-xs transition-colors shrink-0 cursor-pointer"
+              className="text-[#65869C] hover:text-[#263746] p-0.5 rounded transition-colors shrink-0 cursor-pointer"
               aria-label="Dismiss banner"
             >
               <X className="w-3.5 h-3.5" />
@@ -191,7 +186,7 @@ function StudioAppContent() {
       {/* Mobile-First WhatsApp Quick Action */}
       <WhatsAppFloatingButton />
 
-      {/* Quick Booking Modal Drawer (if triggered from quick-action) */}
+      {/* Quick Booking Modal Drawer */}
       <BookingModal
         isOpen={bookingOpen}
         onClose={() => setBookingOpen(false)}

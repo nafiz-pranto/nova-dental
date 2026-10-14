@@ -8,7 +8,6 @@ import {
   Clock, 
   MessageCircle, 
   ShieldCheck, 
-  ArrowUpRight,
   Sparkles
 } from 'lucide-react';
 
@@ -17,28 +16,26 @@ export const Footer: React.FC<{ onOpenBooking: () => void }> = ({ onOpenBooking 
   const { navigate } = useRouter();
 
   return (
-    <footer className="bg-[#1E3730] text-[#FCFBF8] border-t border-[#29483F] font-sans">
+    <footer className="bg-[#263746] text-[#FFFFFF] border-t border-[#365469] font-sans">
       {/* Upper Footer: Consultation Invitation Banner */}
-      <div className="border-b border-[#29483F] relative overflow-hidden">
-        <div className="absolute top-0 right-1/3 w-80 h-80 bg-[#B49A6A]/5 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div className="bg-[#365469] border-b border-[#263746]/60 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             <div className="lg:col-span-8">
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-[#B49A6A] mb-2 flex items-center gap-1.5">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#A9C0D0] mb-2 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>{isBn ? 'শান্ত ও যত্নে ভরা প্রিমিয়াম সেবা' : 'Quiet Luxury & Restorative Dentistry'}</span>
+                <span>{isBn ? 'শান্ত ও যত্নে ভরা প্রিমিয়াম সেবা' : 'Gentle Care & Restorative Dentistry'}</span>
               </span>
-              <h3 className="font-serif-atelier text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight text-[#FCFBF8]">
+              <h3 className="font-serif-atelier text-2xl sm:text-3xl font-bold leading-tight text-[#FFFFFF]">
                 {isBn
-                  ? 'আপনার হাসির স্বাভাবিক সৌন্দর্য ও স্বাস্থ্য সুরক্ষায় আমরা প্রস্তুত।'
+                  ? 'আপনার সুন্দর হাসির যত্নে ও সুস্থতায় পাশে আছি আমরা।'
                   : 'Experience modern dental care planned around comfort, precision, and trust.'}
               </h3>
             </div>
             <div className="lg:col-span-4 flex flex-col sm:flex-row gap-3 lg:justify-end">
               <button
                 onClick={() => navigate('/appointment')}
-                className="px-6 py-3.5 bg-[#B49A6A] hover:bg-[#A38959] text-[#29483F] text-xs font-semibold uppercase tracking-wider rounded-2xs transition-all shadow-md cursor-pointer whitespace-nowrap"
+                className="px-6 py-3 bg-[#FFFFFF] hover:bg-[#E4EEF5] text-[#365469] text-xs font-bold uppercase tracking-wider rounded-md transition-all shadow-md cursor-pointer whitespace-nowrap"
               >
                 {isBn ? 'অ্যাপয়েন্টমেন্ট নিন' : 'Request Consultation'}
               </button>
@@ -48,17 +45,17 @@ export const Footer: React.FC<{ onOpenBooking: () => void }> = ({ onOpenBooking 
                   href={`https://wa.me/${CLINIC_CONFIG.brand.configuredRealWhatsAppNumber}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3.5 bg-[#29483F] hover:bg-[#34584E] text-[#FCFBF8] border border-[#34584E] text-xs font-semibold uppercase tracking-wider rounded-2xs transition-all flex items-center justify-center gap-2 whitespace-nowrap"
+                  className="px-5 py-3 bg-[#263746] hover:bg-[#1E313E] text-[#FFFFFF] border border-[#65869C]/50 text-xs font-semibold uppercase tracking-wider rounded-md transition-all flex items-center justify-center gap-2 whitespace-nowrap"
                 >
-                  <MessageCircle className="w-3.5 h-3.5 text-[#A5B5A5]" />
+                  <MessageCircle className="w-4 h-4 text-[#A9C0D0]" />
                   <span>WhatsApp</span>
                 </a>
               ) : (
                 <button
                   onClick={() => navigate('/contact')}
-                  className="px-6 py-3.5 bg-[#29483F] hover:bg-[#34584E] text-[#FCFBF8] border border-[#34584E] text-xs font-semibold uppercase tracking-wider rounded-2xs transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+                  className="px-5 py-3 bg-[#263746] hover:bg-[#1E313E] text-[#FFFFFF] border border-[#65869C]/50 text-xs font-semibold uppercase tracking-wider rounded-md transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
                 >
-                  <MessageCircle className="w-3.5 h-3.5 text-[#A5B5A5]" />
+                  <MessageCircle className="w-4 h-4 text-[#A9C0D0]" />
                   <span>WhatsApp ({isBn ? 'ডেমো' : 'Demo'})</span>
                 </button>
               )}
@@ -68,23 +65,23 @@ export const Footer: React.FC<{ onOpenBooking: () => void }> = ({ onOpenBooking 
       </div>
 
       {/* Main Footer Details */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-4">
             <Link to="/" className="flex items-center gap-3 mb-4 inline-flex group">
-              <div className="w-9 h-9 rounded-2xs bg-[#FCFBF8] text-[#29483F] flex items-center justify-center font-serif text-lg font-bold border border-[#B49A6A]/60">
+              <div className="w-9 h-9 rounded-md bg-[#FFFFFF] text-[#365469] flex items-center justify-center font-serif text-lg font-bold border border-[#A9C0D0]">
                 N
               </div>
-              <span className="font-serif-atelier text-xl font-medium text-[#FCFBF8] group-hover:text-[#B49A6A] transition-colors">
+              <span className="font-serif-atelier text-xl font-bold text-[#FFFFFF] group-hover:text-[#A9C0D0] transition-colors">
                 {isBn ? CLINIC_CONFIG.brand.nameBn : CLINIC_CONFIG.brand.nameEn}
               </span>
             </Link>
-            <p className="text-xs text-[#A5B5A5] leading-relaxed max-w-sm mb-6 font-light">
+            <p className="text-xs text-[#E4EEF5] leading-relaxed max-w-sm mb-5 font-normal">
               {isBn ? CLINIC_CONFIG.brand.taglineBn : CLINIC_CONFIG.brand.taglineEn}
             </p>
-            <div className="p-3.5 bg-[#29483F] rounded-xs border border-[#34584E] text-[11px] text-[#E7E2D8] flex items-start gap-2.5">
-              <ShieldCheck className="w-4 h-4 text-[#B49A6A] shrink-0 mt-0.5" />
+            <div className="p-3 bg-[#365469] rounded-lg border border-[#65869C]/40 text-xs text-[#E4EEF5] flex items-start gap-2.5">
+              <ShieldCheck className="w-4 h-4 text-[#A9C0D0] shrink-0 mt-0.5" />
               <span className="leading-relaxed">
                 {isBn
                   ? 'ইউরোপীয় ক্লাস-বি ভ্যাকুয়াম স্টেরিলাইজেশন প্রটোকল কঠোরভাবে অনুসরণ করা হয়।'
@@ -95,36 +92,36 @@ export const Footer: React.FC<{ onOpenBooking: () => void }> = ({ onOpenBooking 
 
           {/* Location & Contact */}
           <div className="lg:col-span-4">
-            <h4 className="text-xs uppercase font-semibold tracking-wider text-[#B49A6A] mb-4">
+            <h4 className="text-xs uppercase font-bold tracking-wider text-[#A9C0D0] mb-3">
               {isBn ? 'ক্লিনিক ঠিকানা ও সময়' : 'Studio Location & Hours'}
             </h4>
-            <ul className="space-y-3.5 text-xs text-[#E7E2D8]">
+            <ul className="space-y-3 text-xs text-[#E4EEF5]">
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#B49A6A] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#A9C0D0] shrink-0 mt-0.5" />
                 <span className="leading-snug">
                   {isBn ? CLINIC_CONFIG.brand.addressBn : CLINIC_CONFIG.brand.addressEn}
-                  <span className="block text-[11px] text-[#A5B5A5] mt-1">
+                  <span className="block text-[11px] text-[#A9C0D0]/80 mt-0.5">
                     {isBn ? CLINIC_CONFIG.brand.landmarkBn : CLINIC_CONFIG.brand.landmarkEn}
                   </span>
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#B49A6A] shrink-0" />
+                <Phone className="w-4 h-4 text-[#A9C0D0] shrink-0" />
                 {CLINIC_CONFIG.brand.isRealPhoneConfigured && CLINIC_CONFIG.brand.configuredRealPhone ? (
                   <a href={`tel:${CLINIC_CONFIG.brand.configuredRealPhone}`} className="hover:text-white transition-colors">
                     {CLINIC_CONFIG.brand.configuredRealPhone}
                   </a>
                 ) : (
-                  <span className="text-[#A5B5A5]">
+                  <span className="text-[#E4EEF5]/90">
                     {isBn ? CLINIC_CONFIG.brand.phoneDisplayBn : CLINIC_CONFIG.brand.phoneDisplayEn}
                   </span>
                 )}
               </li>
               <li className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 text-[#B49A6A] shrink-0 mt-0.5" />
+                <Clock className="w-4 h-4 text-[#A9C0D0] shrink-0 mt-0.5" />
                 <div>
                   <span className="block">{isBn ? CLINIC_CONFIG.brand.hours.weekdayBn : CLINIC_CONFIG.brand.hours.weekdayEn}</span>
-                  <span className="block text-[11px] text-[#A5B5A5] mt-0.5">
+                  <span className="block text-[11px] text-[#A9C0D0]/80 mt-0.5">
                     {isBn ? CLINIC_CONFIG.brand.hours.weekendBn : CLINIC_CONFIG.brand.hours.weekendEn}
                   </span>
                 </div>
@@ -134,38 +131,38 @@ export const Footer: React.FC<{ onOpenBooking: () => void }> = ({ onOpenBooking 
 
           {/* Quick Treatment Links */}
           <div className="lg:col-span-4">
-            <h4 className="text-xs uppercase font-semibold tracking-wider text-[#B49A6A] mb-4">
+            <h4 className="text-xs uppercase font-bold tracking-wider text-[#A9C0D0] mb-3">
               {isBn ? 'চিকিৎসা ক্ষেত্রসমূহ' : 'Curated Disciplines'}
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#A5B5A5]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#E4EEF5]">
               {CLINIC_CONFIG.services.map((svc) => (
                 <Link
                   key={svc.id}
                   to={`/services/${svc.id}`}
-                  className="hover:text-[#FCFBF8] transition-colors py-1 flex items-center gap-1 group"
+                  className="hover:text-[#FFFFFF] transition-colors py-1 flex items-center gap-1 group"
                 >
-                  <span className="text-[#B49A6A] text-[10px] group-hover:translate-x-0.5 transition-transform">›</span>
+                  <span className="text-[#A9C0D0] text-xs group-hover:translate-x-0.5 transition-transform">›</span>
                   <span>{isBn ? svc.titleBn : svc.titleEn}</span>
                 </Link>
               ))}
             </div>
 
-            <div className="mt-6 pt-4 border-t border-[#29483F] flex items-center justify-between text-[11px] text-[#A5B5A5]">
-              <span>Banani 11, Dhaka</span>
+            <div className="mt-6 pt-4 border-t border-[#365469] flex items-center justify-between text-[11px] text-[#A9C0D0]">
+              <span>বনানী ১১, ঢাকা</span>
               <span className="font-mono text-[10px]">VERIFIED CLINICAL PROTOCOL</span>
             </div>
           </div>
         </div>
 
         {/* Lower Legal & Demo Notice */}
-        <div className="mt-12 pt-8 border-t border-[#29483F] flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-[#A5B5A5]">
+        <div className="mt-10 pt-6 border-t border-[#365469] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#A9C0D0]/80">
           <div className="flex items-center gap-2">
             <span>© {new Date().getFullYear()} NOVA Dental Studio.</span>
-            <span className="text-[#34584E]">|</span>
+            <span>|</span>
             <span>{isBn ? 'সর্বস্বত্ব সংরক্ষিত।' : 'All rights reserved.'}</span>
           </div>
 
-          <div className="text-center md:text-right text-[#A5B5A5]/80">
+          <div className="text-center md:text-right">
             <span>{isBn ? 'ক্লায়েন্ট প্রেজেন্টেশন ও এজেন্সি ডেমো সংস্করণ' : 'Agency Presentation Demo Prototype'}</span>
           </div>
         </div>
