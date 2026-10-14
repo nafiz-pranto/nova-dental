@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --color-muted-forest: #29483F;
+  --color-dusty-sage: #A5B5A5;
+  --color-warm-ivory: #F6F3EC;
+  --color-soft-stone: #E7E2D8;
+  --color-muted-gold: #B49A6A;
+  --color-warm-charcoal: #343A36;
+  --color-soft-gray: #777D77;
+  --color-off-white: #FCFBF8;
+}
+
+@layer utilities {
+  .font-serif-atelier {
+    font-family: 'Playfair Display', 'Noto Serif Bengali', serif;
+  }
+  .font-sans-modern {
+    font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+  }
+  .font-serif-human {
+    font-family: 'Fraunces', 'Noto Serif Bengali', Georgia, serif;
+  }
+  .font-bengali-heading {
+    font-family: 'Noto Serif Bengali', 'Playfair Display', serif;
+  }
+  .font-bengali-ui {
+    font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif;
+  }
+  .bg-atelier-ivory {
+    background-color: #F6F3EC;
+  }
+  .bg-atelier-sand {
+    background-color: #E7E2D8;
+  }
+  .bg-atelier-forest {
+    background-color: #29483F;
+  }
+  .text-atelier-gold {
+    color: #B49A6A;
+  }
+  .border-atelier-gold {
+    border-color: #B49A6A;
+  }
+}
+
+/* Muted refined gold accent */
+.luxury-gold-shimmer {
+  background: linear-gradient(135deg, #CBB68B 0%, #B49A6A 50%, #9B8154 100%);
+}
+
+.luxury-card-border {
+  border: 1px solid rgba(180, 154, 106, 0.28);
+}
+
+.luxury-hairline {
+  border-color: #E7E2D8;
+}
+
+/* Enhanced Bengali typography and glyph rendering */
+html[lang="bn"] {
+  font-family: 'Hind Siliguri', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.65;
+}
+
+html[lang="bn"] .font-serif-atelier {
+  font-family: 'Noto Serif Bengali', 'Playfair Display', serif;
+  line-height: 1.32;
+}
+
+/* Balanced text wrap without breaking Bengali conjunct glyphs awkwardly */
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+p, span, label, a {
+  overflow-wrap: break-word;
+}
+
+/* Custom scrollbar in muted tones */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(119, 125, 119, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(119, 125, 119, 0.55);
+}
+
+/* Reduced Motion Compliance (WCAG 2.2 AA) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessible focus outline for keyboard navigation */
+:focus-visible {
+  outline: 2px solid #B49A6A;
+  outline-offset: 2px;
+}

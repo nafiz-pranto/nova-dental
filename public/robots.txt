@@ -1,0 +1,8 @@
+# Robots.txt for NOVA Dental Studio Client Demonstration Preview
+# Compatible with client-side SPA routing and search index crawlers
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ais-dev-lfnv74duhrgxbcmrw42i6u-567922298783.asia-southeast1.run.app/sitemap.xml

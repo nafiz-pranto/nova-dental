@@ -1,0 +1,219 @@
+import React, { useState } from 'react';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
+import { RouterProvider, useRouter } from './context/RouterContext';
+import { Header } from './components/layout/Header';
+import { Footer } from './components/layout/Footer';
+import { WhatsAppFloatingButton } from './components/layout/WhatsAppFloatingButton';
+import { HeroSection } from './components/home/HeroSection';
+import { TrustStrip } from './components/home/TrustStrip';
+import { ServicesSection } from './components/home/ServicesSection';
+import { ClinicExperienceSection } from './components/home/ClinicExperienceSection';
+import { PatientJourneySection } from './components/home/PatientJourneySection';
+import { TeamSection } from './components/home/TeamSection';
+import { FaqSection } from './components/home/FaqSection';
+import { AppointmentSection } from './components/home/AppointmentSection';
+import { ServicesPage } from './pages/ServicesPage';
+import { ServiceDetailPage } from './pages/ServiceDetailPage';
+import { TeamPage } from './pages/TeamPage';
+import { PatientGuidePage } from './pages/PatientGuidePage';
+import { ContactPage } from './pages/ContactPage';
+import { AppointmentPage } from './pages/AppointmentPage';
+import { BookingModal } from './components/booking/BookingModal';
+import { ServiceDetailModal } from './components/services/ServiceDetailModal';
+import { ServiceItem } from './types/clinic';
+import { CLINIC_CONFIG } from './config/clinicData';
+import { RouteSeo } from './components/seo/RouteSeo';
+import { X } from 'lucide-react';
+
+function StudioAppContent() {
+  const { isBn } = useLanguage();
+  const { path, navigate } = useRouter();
+  const [bookingOpen, setBookingOpen] = useState<boolean>(false);
+  const [selectedServiceId, setSelectedServiceId] = useState<string>('smile-design');
+  const [activeDetailService, setActiveDetailService] = useState<ServiceItem | null>(null);
+  const [showDemoBanner, setShowDemoBanner] = useState<boolean>(true);
+
+  const handleOpenBooking = (serviceId?: string) => {
+    if (serviceId) setSelectedServiceId(serviceId);
+    setBookingOpen(true);
+  };
+
+  // Match routes
+  const renderCurrentRoute = () => {
+    // 1. Service Detail Route: /services/:id
+    if (path.startsWith('/services/')) {
+      const serviceId = path.replace('/services/', '').split('/')[0];
+      return <ServiceDetailPage serviceId={serviceId} />;
+    }
+
+    // 2. Services Overview Route
+    if (path === '/services') {
+      return <ServicesPage />;
+    }
+
+    // 3. Team & Studio Route
+    if (path === '/team') {
+      return <TeamPage />;
+    }
+
+    // 4. Patient Guide & FAQs Route
+    if (path === '/patient-guide' || path === '/faq') {
+      return <PatientGuidePage />;
+    }
+
+    // 5. Contact & Location Route
+    if (path === '/contact') {
+      return <ContactPage />;
+    }
+
+    // 6. Appointment Request Route
+    if (path === '/appointment' || path === '/book') {
+      return <AppointmentPage />;
+    }
+
+    // Default: Master Production Homepage
+    return (
+      <>
+        {/* Hero Section */}
+        <HeroSection onOpenBooking={() => navigate('/appointment')} />
+
+        {/* Restrained Trust & Hygiene Strip */}
+        <TrustStrip />
+
+        {/* Featured Services with Quick View & Full Protocol links */}
+        <ServicesSection
+          onSelectService={(service) => setActiveDetailService(service)}
+          onOpenBookingForService={(svcId) => navigate(`/appointment?service=${svcId}`)}
+        />
+
+        {/* Patient Journey ("What to Expect") */}
+        <PatientJourneySection onOpenBooking={() => navigate('/appointment')} />
+
+        {/* Clinic Environment & Technology */}
+        <ClinicExperienceSection />
+
+        {/* Clinical Team & Conservative Philosophy */}
+        <TeamSection onOpenBooking={() => navigate('/appointment')} />
+
+        {/* Practical FAQs */}
+        <FaqSection />
+
+        {/* Contact & Appointment Section */}
+        <AppointmentSection onOpenBooking={() => navigate('/appointment')} />
+      </>
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-[#F6F3EC] text-[#343A36] flex flex-col font-sans selection:bg-[#B49A6A]/25 selection:text-[#29483F] antialiased">
+      {/* Route-level SEO for Master Homepage */}
+      {path === '/' && (
+        <RouteSeo
+          titleEn="NOVA Dental Studio | Conservative Restorative Dentistry • Banani, Dhaka"
+          titleBn="নোভা ডেন্টাল স্টুডিও | আধুনিক ও আরামদায়ক দন্ত্য চিকিৎসা • বনানী, ঢাকা"
+          descriptionEn="Architectural, patient-led dental care in Banani, Dhaka. Conservative restorative dentistry, digital smile design, and European Class-B hospital sterilization."
+          descriptionBn="বনানী, ঢাকায় আধুনিক ও শান্ত পরিবেশে দন্ত্য সেবা। প্রাকৃতিক দাঁত সংরক্ষণ, ডিজিটাল স্মাইল ডিজাইন এবং আন্তর্জাতিক ক্লাস-বি জীবাণুমুক্তকরণ সুরক্ষা।"
+          canonicalPath="/"
+          schemaData={{
+            '@context': 'https://schema.org',
+            '@type': 'Dentist',
+            'name': 'NOVA Dental Studio (Sample Demo Prototype)',
+            'alternateName': 'নোভা ডেন্টাল স্টুডিও (ডেমো প্রোটোটাইপ)',
+            'description': 'Architectural and conservative restorative dental clinic concept in Banani, Dhaka. Agency demonstration prototype with sample clinician profiles and illustrative mock data.',
+            'disambiguatingDescription': 'Fictional client presentation prototype. Not a verified or active commercial healthcare entity.',
+            'url': window.location.origin,
+            'address': {
+              '@type': 'PostalAddress',
+              'streetAddress': CLINIC_CONFIG.brand.addressEn,
+              'addressLocality': 'Dhaka',
+              'postalCode': '1213',
+              'addressCountry': 'BD',
+            },
+            'geo': {
+              '@type': 'GeoCoordinates',
+              'latitude': 23.7937,
+              'longitude': 90.4066,
+            },
+            'openingHoursSpecification': [
+              {
+                '@type': 'OpeningHoursSpecification',
+                'dayOfWeek': ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+                'opens': '10:00',
+                'closes': '20:30',
+              },
+              {
+                '@type': 'OpeningHoursSpecification',
+                'dayOfWeek': 'Friday',
+                'opens': '15:00',
+                'closes': '20:30',
+              },
+            ],
+            'medicalSpecialty': 'Dentistry',
+            'priceRange': '$$',
+          }}
+        />
+      )}
+
+      {/* 0. Top Presentation Demo Banner in Muted Forest */}
+      {showDemoBanner && (
+        <aside aria-label="Demo notice" className="bg-[#1E3730] text-[#FCFBF8] px-4 py-1.5 text-xs border-b border-[#29483F] flex items-center justify-between z-50">
+          <div className="max-w-7xl mx-auto w-full flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[#B49A6A] font-bold">
+                CLIENT PRESENTATION DEMO
+              </span>
+              <span className="text-[#A5B5A5] text-[11px] hidden sm:inline">
+                • {isBn ? CLINIC_CONFIG.demoNoticeBn : CLINIC_CONFIG.demoNoticeEn}
+              </span>
+            </div>
+            <button
+              onClick={() => setShowDemoBanner(false)}
+              className="text-[#A5B5A5] hover:text-[#FCFBF8] p-0.5 rounded-xs transition-colors shrink-0 cursor-pointer"
+              aria-label="Dismiss banner"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </aside>
+      )}
+
+      {/* Global Header */}
+      <Header onOpenBooking={() => navigate('/appointment')} />
+
+      {/* Dynamic Route Canvas with main landmark ID for skip link */}
+      <main id="main-content" className="flex-1 focus:outline-none" tabIndex={-1}>
+        {renderCurrentRoute()}
+      </main>
+
+      {/* Global Footer */}
+      <Footer onOpenBooking={() => navigate('/appointment')} />
+
+      {/* Mobile-First WhatsApp Quick Action */}
+      <WhatsAppFloatingButton />
+
+      {/* Quick Booking Modal Drawer (if triggered from quick-action) */}
+      <BookingModal
+        isOpen={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+        preselectedServiceId={selectedServiceId}
+      />
+
+      {/* Quick Service Detail Modal */}
+      <ServiceDetailModal
+        service={activeDetailService}
+        onClose={() => setActiveDetailService(null)}
+        onBookService={(svcId) => navigate(`/appointment?service=${svcId}`)}
+      />
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <RouterProvider>
+      <LanguageProvider>
+        <StudioAppContent />
+      </LanguageProvider>
+    </RouterProvider>
+  );
+}

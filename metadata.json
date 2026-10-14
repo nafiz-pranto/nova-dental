@@ -1,0 +1,6 @@
+{
+  "name": "NOVA Dental Studio - Design Direction Preview",
+  "description": "Interactive design decision tool comparing three premium visual directions for NOVA Dental Studio (Dhaka, Bangladesh).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
